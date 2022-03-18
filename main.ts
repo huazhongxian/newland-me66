@@ -266,6 +266,41 @@ namespace newland {
       }
       control.raiseEvent(EventBusSource.MES_BROADCAST_GENERAL_ID, 0x8900 + cmd)
     }
+
+    if (a.indexOf("<STX>") != -1) {
+
+    } else if (a.indexOf("Name_CN") != -1) {
+      //let a = '{"SKU":1002,"Name_CN":"瓜子","Name_PY":"guazi","Price":10.00}';
+      // let a = '{"ID":"2001","user":"zhangsan"}';
+      let obj = JSON.parse(a);
+      //basic.showNumber(1)
+      //basic.showString(obj.Price)
+      let cmd = 100;
+      if (obj.SKU != undefined) {
+        if (btnEvt1) {
+          btnEvt1(obj.SKU, obj.Name_PY, obj.Price)
+        }
+      }
+
+      control.raiseEvent(EventBusSource.MES_BROADCAST_GENERAL_ID, 0x8900 + cmd)
+    } else if (a.indexOf("user") != -1) {
+      // let a = '{"ID":"2001","user":"zhangsan"}';
+      let obj = JSON.parse(a);
+      let cmd = 101;
+      if (obj.ID != undefined) {
+        if (peopleEvt) {
+          peopleEvt(obj.ID, obj.user)
+        }
+      }
+
+      control.raiseEvent(EventBusSource.MES_BROADCAST_GENERAL_ID, 0x8900 + cmd)
+
+
+    }
+
+
+
+
   })
 
   function asyncWrite(msg: string, evt: number): void {
@@ -283,13 +318,13 @@ namespace newland {
   //% group="Basic" weight=100
   export function newland_init(tx: SerialPin, rx: SerialPin): void {
     serial.redirect(tx, rx, BaudRate.BaudRate115200)
-    basic.pause(500)
+    // basic.pause(500)
     serial.setTxBufferSize(128)
     serial.setRxBufferSize(128)
     serial.readString()
     serial.writeString('\n\n')
     // take control of the ext serial port from Newland
-    asyncWrite(`K0`, 0)
+    //asyncWrite(`K0`, 0)
     basic.pause(300)
   }
 
@@ -413,6 +448,7 @@ namespace newland {
   export function me66_init(tx: SerialPin, rx: SerialPin): void {
     serial.redirect(tx, rx, BaudRate.BaudRate115200)
     serial.readString()
+    serial.setTxBufferSize(128)
     serial.setRxBufferSize(128)
     serial.writeString('\n\n')
     basic.pause(300)
