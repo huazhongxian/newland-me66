@@ -5,7 +5,7 @@ load dependency
 */
 
 //% color="#5c7cfa" weight=10 icon="\uf16b"
-//% groups='["Basic", "Graphic", Classifier", "Tag/Code", "Audio", "Face", "Wifi", "CloudAI", "AI"]'
+//% groups='["Basic", "Graphic", Classifier", "Tag/Code", "Audio", "Face", "Wifi", "CloudAI", "AI", "ME66"]'
 namespace newland {
   //type起个新类型
   type EvtAct = () => void
@@ -444,7 +444,7 @@ namespace newland {
    * @param rx Rx pin; eg: SerialPin.P2
    */
   //% blockId=me66_init block="ME66 init|Tx pin %tx|Rx pin %rx"
-  //% group="Basic" weight=100
+  //% group="ME66" weight=100
   export function me66_init(tx: SerialPin, rx: SerialPin): void {
     serial.redirect(tx, rx, BaudRate.BaudRate115200)
     serial.readString()
@@ -455,7 +455,7 @@ namespace newland {
   }
 
   //% blockId=newland_volume_control block="Newland  Volume Dir%dir"
-  //% group="Basic" weight=98
+  //% group="ME66" weight=98
   export function newland_volume_control(dir: VolumeNum): void {
     if (dir == 0) {
       serial.writeLine('<STX><0015><SET><01><00><VOLUME=0><ETX><56>')
@@ -474,7 +474,7 @@ namespace newland {
   }
 
   //% blockId=newland_volume_onOff block="Newland Volume onOff%dir"
-  //% group="Basic" weight=98
+  //% group="ME66" weight=98
   export function newland_volume_onOff(dir: OnOffDirection): void {
     if (dir == 0) {
       serial.writeLine('<STX><0021><SET><01><00><PROMPT=0003OFF><ETX><21>')
@@ -485,7 +485,7 @@ namespace newland {
   }
 
   //% blockId=newland_volume_set block="Newland volume Set"
-  //% group="Basic" weight=88
+  //% group="ME66" weight=88
   export function newland_volume_set(): void {
     //OFF
     serial.writeLine('<STX><0016><SET><01><00><RESET=OFF><ETX><77>')
@@ -497,7 +497,7 @@ namespace newland {
 
   //% blockId=newland_scan_items block="scan items"
   //% weight=96
-  //% group="Basic" draggableParameters=reporter
+  //% group="ME66" draggableParameters=reporter
   export function newland_scan_items(
       handler: (SKU: string, Name: string, Price: string) => void
   ): void {
@@ -507,7 +507,7 @@ namespace newland {
 
   //% blockId=newland_scan_people block="scan people"
   //% weight=96
-  //% group="Basic" draggableParameters=reporter
+  //% group="ME66" draggableParameters=reporter
   export function newland_scan_people(
       handler: (ID: string, name: string) => void
   ): void {
