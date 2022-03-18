@@ -438,81 +438,6 @@ namespace newland {
   }
 
 
-  /**
-   * init serial port
-   * @param tx Tx pin; eg: SerialPin.P1
-   * @param rx Rx pin; eg: SerialPin.P2
-   */
-  //% blockId=me66_init block="ME66 init|Tx pin %tx|Rx pin %rx"
-  //% group="ME66" weight=100
-  export function me66_init(tx: SerialPin, rx: SerialPin): void {
-    serial.redirect(tx, rx, BaudRate.BaudRate115200)
-    serial.readString()
-    serial.setTxBufferSize(128)
-    serial.setRxBufferSize(128)
-    serial.writeString('\n\n')
-    basic.pause(300)
-  }
-
-  //% blockId=newland_volume_control block="Newland  Volume Dir%dir"
-  //% group="ME66" weight=98
-  export function newland_volume_control(dir: VolumeNum): void {
-    if (dir == 0) {
-      serial.writeLine('<STX><0015><SET><01><00><VOLUME=0><ETX><56>')
-    } else if (dir == 1) {
-      serial.writeLine('<STX><0015><SET><01><00><VOLUME=1><ETX><57>')
-    } else if (dir == 2) {
-      serial.writeLine('<STX><0015><SET><01><00><VOLUME=2><ETX><54>')
-    } else if (dir == 3) {
-      serial.writeLine('<STX><0015><SET><01><00><VOLUME=3><ETX><55>')
-    } else if (dir == 4) {
-      serial.writeLine('<STX><0015><SET><01><00><VOLUME=4><ETX><52>')
-    } else if (dir == 5) {
-      serial.writeLine('<STX><0015><SET><01><00><VOLUME=5><ETX><53>')
-    }
-    basic.pause(100)
-  }
-
-  //% blockId=newland_volume_onOff block="Newland Volume onOff%dir"
-  //% group="ME66" weight=98
-  export function newland_volume_onOff(dir: OnOffDirection): void {
-    if (dir == 0) {
-      serial.writeLine('<STX><0021><SET><01><00><PROMPT=0003OFF><ETX><21>')
-    } else if (dir == 1) {
-      serial.writeLine('<STX><0020><SET><01><00><PROMPT=0002ON><ETX><6F>')
-    }
-    basic.pause(100)
-  }
-
-  //% blockId=newland_volume_set block="Newland volume Set"
-  //% group="ME66" weight=88
-  export function newland_volume_set(): void {
-    //OFF
-    serial.writeLine('<STX><0016><SET><01><00><RESET=OFF><ETX><77>')
-    basic.pause(100)
-    //ON
-    serial.writeLine('<STX><0015><SET><01><00><RESET=ON><ETX><3A>')
-    basic.pause(100)
-  }
-
-  //% blockId=newland_scan_items block="scan items"
-  //% weight=96
-  //% group="ME66" draggableParameters=reporter
-  export function newland_scan_items(
-      handler: (SKU: string, Name: string, Price: string) => void
-  ): void {
-    btnEvt1 = handler
-  }
-
-
-  //% blockId=newland_scan_people block="scan people"
-  //% weight=96
-  //% group="ME66" draggableParameters=reporter
-  export function newland_scan_people(
-      handler: (ID: string, name: string) => void
-  ): void {
-    peopleEvt = handler
-  }
 
 
 
@@ -793,242 +718,80 @@ namespace newland {
   }
 
   /**
-   * @param ssid SSID; eg: ssid
-   * @param pass PASSWORD; eg: password
+   * init serial port
+   * @param tx Tx pin; eg: SerialPin.P1
+   * @param rx Rx pin; eg: SerialPin.P2
    */
-  /*  //% blockId=newland_join_ap block="Join Ap %ssid %pass"
-    //% group="Wifi" weight=50
-    export function newland_join_ap(ssid: string, pass: string) {
-      serial.writeLine(`K50 ${ssid} ${pass}`)
-    }*/
+  //% blockId=me66_init block="ME66 init|Tx pin %tx|Rx pin %rx"
+  //% group="ME66" weight=100
+  export function me66_init(tx: SerialPin, rx: SerialPin): void {
+    serial.redirect(tx, rx, BaudRate.BaudRate115200)
+    serial.readString()
+    serial.setTxBufferSize(128)
+    serial.setRxBufferSize(128)
+    serial.writeString('\n\n')
+    basic.pause(300)
+  }
 
-  /*  //% blockId=newland_getip block="Wifi Get IP"
-    //% group="Wifi" weight=49
-    export function newland_get_ip() {
-      // serial.writeLine(`K54`)
-      let str = `K54`
-      asyncWrite(str, 54)
-    }*/
-
-  /*  //% blockId=newland_ip_onread block="on IP Data"
-    //% group="Wifi" weight=48 draggableParameters=reporter
-    export function newland_ip_onread(
-      handler: (ip: string) => void
-    ) {
-      ipEvt = handler
-    }*/
-
-  /*  //% blockId=newland_gettime block="Newland get time"
-    //% group="Wifi" weight=47
-    export function newland_gettime(): Array<string> {
-      asyncWrite(`K56`, 56)
-      return lastCmd
-    }*/
-
-  /**
-   * @param host Mqtt host; eg: iot.kittenbot.cn
-   * @param cid Client ID; eg: clientid
-   * @param port Host Port; eg: 1883
-   * @param user Username; eg: user
-   * @param pass Password; eg: pass
-   */
-  /*  //% blockId=newland_mqtt_host block="Mqtt Host %host| clientID%cid||Port%port User%user Pass%pass"
-    //% group="Wifi" weight=46
-    export function newland_mqtt_host(
-      host: string,
-      cid: string,
-      port: number = 1883,
-      user: string = null,
-      pass: string = null
-    ) {
-      if (user && pass) {
-        serial.writeLine(`K51 ${host} ${cid} ${port} ${user} ${pass}`)
-      } else {
-        serial.writeLine(`K51 ${host} ${cid} ${port}`)
-      }
-    }*/
-
-  /**
-   * @param topic Topic to subscribe; eg: /topic
-   */
-  /*
-    //% blockId=newland_mqtt_sub block="Mqtt Subscribe %topic"
-    //% group="Wifi" weight=45
-    export function newland_mqtt_sub(topic: string) {
-      serial.writeLine(`K52 ${topic}`)
+  //% blockId=newland_volume_control block="Newland  Volume Dir%dir"
+  //% group="ME66" weight=98
+  export function newland_volume_control(dir: VolumeNum): void {
+    if (dir == 0) {
+      serial.writeLine('<STX><0015><SET><01><00><VOLUME=0><ETX><56>')
+    } else if (dir == 1) {
+      serial.writeLine('<STX><0015><SET><01><00><VOLUME=1><ETX><57>')
+    } else if (dir == 2) {
+      serial.writeLine('<STX><0015><SET><01><00><VOLUME=2><ETX><54>')
+    } else if (dir == 3) {
+      serial.writeLine('<STX><0015><SET><01><00><VOLUME=3><ETX><55>')
+    } else if (dir == 4) {
+      serial.writeLine('<STX><0015><SET><01><00><VOLUME=4><ETX><52>')
+    } else if (dir == 5) {
+      serial.writeLine('<STX><0015><SET><01><00><VOLUME=5><ETX><53>')
     }
-  */
+    basic.pause(100)
+  }
 
-  /**
-   * @param topic Topic to publish; eg: /topic
-   * @param data Data to publish; eg: hello
-   */
-  /*
-    //% blockId=newland_mqtt_pub block="Mqtt Publish %topic %data"
-    //% group="Wifi" weight=44
-    export function newland_mqtt_pub(topic: string, data: string) {
-      serial.writeLine(`K53 ${topic} ${data}`)
+  //% blockId=newland_volume_onOff block="Newland Volume onOff%dir"
+  //% group="ME66" weight=98
+  export function newland_volume_onOff(dir: OnOffDirection): void {
+    if (dir == 0) {
+      serial.writeLine('<STX><0021><SET><01><00><PROMPT=0003OFF><ETX><21>')
+    } else if (dir == 1) {
+      serial.writeLine('<STX><0020><SET><01><00><PROMPT=0002ON><ETX><6F>')
     }
-  */
+    basic.pause(100)
+  }
 
-  /**
-   * @param topic Mqtt Read; eg: /topic
-   */
-  /*  //% blockId=newland_mqtt_read block="Mqtt Read %topic"
-    //% group="Wifi" weight=43
-    export function newland_mqtt_read(topic: string) {
-      topic = topic || ''
-      let str = `K55 ${topic}`
-      serial.writeLine(str)
-      // asyncWrite(str, 55)
+  //% blockId=newland_volume_set block="Newland volume Set"
+  //% group="ME66" weight=88
+  export function newland_volume_set(): void {
+    //OFF
+    serial.writeLine('<STX><0016><SET><01><00><RESET=OFF><ETX><77>')
+    basic.pause(100)
+    //ON
+    serial.writeLine('<STX><0015><SET><01><00><RESET=ON><ETX><3A>')
+    basic.pause(100)
+  }
 
-    }*/
-
-  /*  //% blockId=newland_mqtt_onread block="on Mqtt Data"
-    //% group="Wifi" weight=42 draggableParameters=reporter
-    export function newland_mqtt_onread(
-      handler: (data: string, topic: string) => void
-    ) {
-      mqttDataEvt = handler
-    }*/
-
-
-  /**
-   * @param file Wav File to record; eg: say.wav
-   */
-  /*//% blockId=newland_audio_rec block="WAV Rec %file"
-  //% group="Audio" weight=40
-  export function newland_audio_rec(file: string) {
-    serial.writeLine(`K61 ${file}`)
-  }*/
-
-  /**
-   * @param file Wav File to play; eg: say.wav
-   */
-  /*//% blockId=newland_audio_play block="WAV Play %file"
-  //% group="Audio" weight=39
-  export function newland_audio_play(file: string) {
-    serial.writeLine(`K62 ${file}`)
-  }*/
-
-  /*//% blockId=newland_audio_noisetap block="Calibrate noise"
-  //% group="Audio" weight=38
-  export function newland_audio_noisetap(): void {
-    serial.writeLine(`K63`)
-  }*/
-
-  /**
-   * @param classid Speech Cmd add; eg: cmd
-   */
-  /*//% blockId=newland_speechcmd_addmodel block="Speech Cmd add %classid"
-  //% group="Audio" weight=37
-  export function newland_speechcmd_addmodel(classid: string) {
-    serial.writeLine(`K64 ${classid}`)
-  }*/
-
-  /*//% blockId=newland_speechcmd_listen block="Speech Cmd Listen"
-  //% group="Audio" weight=36
-  export function newland_speechcmd_listen(): void {
-    let str = `K65`
-    serial.writeLine('K65')
-    // asyncWrite(str, 65)
-  }*/
-
-  /*//% blockId=newland_speechcmd_onrecognize block="on Speech Cmd"
-  //% group="Audio" weight=35 draggableParameters=reporter
-  export function newland_speechcmd_onrecognize(
-    handler: (classId: string) => void
-  ) {
-    speechCmdEvt = handler
-  }*/
-
-  /**
-   * @param path json to save; eg: cmd.json
-   */
-  /*//% blockId=newland_speechcmd_save block="Newland Save speech cmd %path"
-  //% group="Audio" weight=34
-  export function newland_speechcmd_save(path: string): void {
-    let str = `K66 ${path}`
-    serial.writeLine(str)
-  }*/
-
-  /**
-   * @param path json to save; eg: cmd.json
-   */
-  /*//% blockId=newland_speechcmd_load block="Newland Load speech cmd %path"
-  //% group="Audio" weight=33 blockGap=40
-  export function newland_speechcmd_load(path: string): void {
-    let str = `K67 ${path}`
-    serial.writeLine(str)
-  }*/
-
-  /*//% blockId=newland_cloud_facerecognize block="Newland Cloud Face Recognize"
-  //% group="CloudAI" weight=30
-  export function newland_cloud_facerecognize() {
-    let str = `K75`
-    serial.writeLine(`K75`)
-    // asyncWrite(str, 75)
-  }*/
-
-  /*//% blockId=newland_cloud_onregface block="on Recognize Face"
-  //% group="CloudAI" weight=29 draggableParameters=reporter
-  export function newland_cloud_onregface(
-    handler: (token: string, sex: string, age: number, mask: number, expression: string) => void
-  ) {
-    facetokenEvt = handler
-  }*/
-
-  /*//% blockId=newland_cloud_faceaddgroup block="add face token %TOKEN to Group %GROUP with name %NAME"
-  //% group="CloudAI" weight=28
-  export function newland_cloud_faceaddgroup(
-    TOKEN: string,
-    GROUP: string,
-    NAME: string
-  ) {
-    serial.writeLine(`K76 ${TOKEN} ${GROUP} ${NAME}`)
-  }*/
-
-  /*//% blockId=newland_cloud_facesearch block="search face token %TOKEN in group %GROUP"
-  //% group="CloudAI" weight=27
-  export function newland_cloud_facesearch(TOKEN: string, GROUP: string) {
-    let str =`K77 ${TOKEN} ${GROUP}`
-    serial.writeLine(str)
-    // asyncWrite(str, 77)
-  }*/
-
-  /* //% blockId=newland_cloud_onfindface block="on Find Face"
-   //% group="CloudAI" weight=26 draggableParameters=reporter blockGap=40
-   export function newland_cloud_onfindface(
-     handler: (name: string, confidence: number) => void
-   ) {
-     facefoundEvt = handler
-   }*/
-
-  /**
-   * @param TXT text to speech; eg: hello world
-   */
-  /*//% blockId=newland_cloud_tts block="TTS %TXT"
-  //% group="CloudAI" weight=25
-  export function newland_cloud_tts(TXT: string) {
-    let str = TXT.split(' ').join('.')
-    serial.writeLine(`K78 ${str}`)
-  }*/
+  //% blockId=newland_scan_items block="scan items"
+  //% weight=96
+  //% group="ME66" draggableParameters=reporter
+  export function newland_scan_items(
+      handler: (SKU: string, Name: string, Price: string) => void
+  ): void {
+    btnEvt1 = handler
+  }
 
 
-  /*//% blockId=newland_reset block="Newland reset"
-  //% group="Basic" weight=10
-  //% advanced=true
-  export function newland_reset(): void {
-    serial.writeLine(`K99`)
-  }*/
-
-  /*//% blockId=newland_stop_kpu block="Newland Stop kpu"
-  //% group="Basic" weight=9 blockGap=40
-  //% advanced=true
-  export function newland_stop_kpu(): void {
-    let str = `K98`
-    serial.writeLine(str)
-  }*/
+  //% blockId=newland_scan_people block="scan people"
+  //% weight=96
+  //% group="ME66" draggableParameters=reporter
+  export function newland_scan_people(
+      handler: (ID: string, user: string) => void
+  ): void {
+    peopleEvt = handler
+  }
 
 
 
