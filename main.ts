@@ -5,7 +5,7 @@ load dependency
 */
 
 //% color="#5c7cfa" weight=10 icon="\uf16b"
-//% groups='["Basic", "Graphic", Classifier", "Tag/Code", "Audio", "Face", "Wifi", "CloudAI", "AI", "ME66"]'
+//% groups='["Basic", "Graphic", "Tag/Code", "Audio", "Face", "AI", "ME66"]'
 namespace newland {
   //type起个新类型
   type EvtAct = () => void
@@ -280,6 +280,8 @@ namespace newland {
         if (btnEvt1) {
           btnEvt1(obj.SKU, obj.Name_PY, obj.Price)
         }
+      }else {
+        btnEvt1('None','None','None')
       }
 
       control.raiseEvent(EventBusSource.MES_BROADCAST_GENERAL_ID, 0x8900 + cmd)
@@ -291,6 +293,8 @@ namespace newland {
         if (peopleEvt) {
           peopleEvt(obj.ID, obj.user)
         }
+      }else{
+        peopleEvt('None','None')
       }
 
       control.raiseEvent(EventBusSource.MES_BROADCAST_GENERAL_ID, 0x8900 + cmd)
@@ -459,19 +463,6 @@ namespace newland {
     serial.writeLine(str)
   }*/
 
-  //% blockId=newland_run block="Newland Run Classifer"
-  //% group="Classifier" weight=88
-  export function newland_run(): void {
-    let str = `K42`
-    serial.writeLine(str)
-    // asyncWrite(str, 42)
-  }
-
-  //% blockId=newland_classified block="on Identified"
-  //% group="Classifier" weight=87 draggableParameters=reporter
-  export function newland_classified(handler: (classId: string) => void) {
-    classifierEvt = handler
-  }
 
   /**
    * @param path json to save; eg: class.json
