@@ -538,7 +538,7 @@ namespace newland {
    */
   //% blockId=newland_track_line block="Newland track line %th"
   //% group="Graphic" weight=75
-  export function newland_track_line(th: string): void {
+  export function newland_track_line(th: number): void {
     let str = `K12 ${th}`
     serial.writeLine(str)
   }
@@ -749,8 +749,11 @@ namespace newland {
     if (dir == 0) {
       serial.writeLine('<STX><0021><SET><01><00><PROMPT=0003OFF><ETX><21>')
     } else if (dir == 1) {
-      serial.writeLine('<STX><0020><SET><01><00><PROMPT=0002ON><ETX><6F>')
+      serial.writeLine('<STX><0021><SET><00><00><PROMPT=DEFAULT><ETX><27>')
+
     }
+
+
     basic.pause(100)
   }
 
