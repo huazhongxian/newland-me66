@@ -269,7 +269,7 @@ namespace newland {
 
     if (a.indexOf("<STX>") != -1) {
 
-    } else if (a.indexOf("Name_CN") != -1) {
+    } else if (a.indexOf("Name_CN") != -1 && a.charAt(0) != 'K') {
       //let a = '{"SKU":1002,"Name_CN":"瓜子","Name_PY":"guazi","Price":10.00}';
       // let a = '{"ID":"2001","user":"zhangsan"}';
       let obj = JSON.parse(a);
@@ -285,7 +285,7 @@ namespace newland {
       }
 
       control.raiseEvent(EventBusSource.MES_BROADCAST_GENERAL_ID, 0x8900 + cmd)
-    } else if (a.indexOf("user") != -1) {
+    } else if (a.indexOf("user") != -1 && a.charAt(0) != 'K') {
       // let a = '{"ID":"2001","user":"zhangsan"}';
       let obj = JSON.parse(a);
       let cmd = 101;
