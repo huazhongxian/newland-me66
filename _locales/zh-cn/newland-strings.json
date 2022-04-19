@@ -30,7 +30,7 @@
     "newland.newland_track_rect|block": "追踪矩形 阈值%th",
     "newland.newland_onrecttrack|block": "追踪矩形",
     "newland.newland_colorcali|block": "颜色校正 %key",
-    "newland.newland_track_line|block": "视觉巡线 %key",
+    "newland.newland_track_line|block": "视觉巡线 %th",
     "newland.newland_onlinetrack|block": "视觉巡线",
     "newland.newland_track_colorblob|block": "追踪色块 %key",
     "newland.newland_oncolorblob|block": "追踪色块",
