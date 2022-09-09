@@ -342,15 +342,6 @@ namespace newland {
   }
 
 
-  //% blockId=newland_screen_direction block="Newland screen Dir%dir"
-  //% group="Basic" weight=98
-  export function newland_screen_direction(dir: screenDirection): void {
-    serial.readString()
-    let str = `K7 ${dir}`
-    serial.writeLine(str)
-    basic.pause(1000)
-  }
-
 
   //% blockId=newland_camera_switch block="Newland camera Dir%dir"
   //% group="Basic" weight=98
