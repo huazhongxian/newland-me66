@@ -323,8 +323,8 @@ namespace newland {
   export function newland_init(tx: SerialPin, rx: SerialPin): void {
     serial.redirect(tx, rx, BaudRate.BaudRate115200)
     // basic.pause(500)
-    serial.setTxBufferSize(128)
-    serial.setRxBufferSize(128)
+    serial.setTxBufferSize(64)
+    serial.setRxBufferSize(64)
     serial.readString()
     serial.writeString('\n\n')
     // take control of the ext serial port from Newland
@@ -709,8 +709,8 @@ namespace newland {
   export function me66_init(tx: SerialPin, rx: SerialPin): void {
     serial.redirect(tx, rx, BaudRate.BaudRate115200)
     serial.readString()
-    serial.setTxBufferSize(128)
-    serial.setRxBufferSize(128)
+    serial.setTxBufferSize(64)
+    serial.setRxBufferSize(64)
     serial.writeString('\n\n')
     basic.pause(300)
   }
