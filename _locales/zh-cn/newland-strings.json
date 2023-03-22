@@ -43,7 +43,7 @@
     "newland.newland_facecount|block": "人脸数量",
     "newland.newland_onfindface|block": "人脸",
 
-    "newland.newland_loadobjectdetection|block": "加载目标检测模型",
+    "newland.newland_loadobjectdetection|block": "加载目标检测模型%dir",
     "newland.newland_detection|block": "目标检测 阈值%th",
     "newland.newland_detectionname|block": "目标名称和位置",
     "newland.newland_loaddigitalrecognition|block": "加载数字识别模型",
@@ -79,6 +79,12 @@
     "newland.LcdDirection.Back|block":"后置摄像头",
     "newland.LcdDirection.Front|block":"前置摄像头",
     "newland.LcdDirection.Land|block":"横屏",
+
+
+    "newland.AiDetection.Standard|block":"标准检测",
+    "newland.AiDetection.Mask|block":"口罩检测",
+    "newland.AiDetection.Refuse|block":"垃圾分类",
+    "newland.AiDetection.LicensePlate|block":"车牌检测",
 
     "newland.screenDirection.Back|block":"竖屏",
     "newland.screenDirection.Front|block":"横屏",

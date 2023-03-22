@@ -76,6 +76,17 @@ namespace newland {
     Back = 2,
   }
 
+  export enum AiDetection {
+    //% block=Standard
+    Standard = 1,
+    //% block=Mask
+    Mask = 2,
+    //% block=Refuse
+    Refuse = 3,
+    //% block=LicensePlate
+    LicensePlate = 4,
+  }
+
   export enum screenDirection {
     //% block=Front
     Front = 0,
@@ -647,11 +658,13 @@ namespace newland {
     facedetEvt = handler
   }
 
-  //% blockId=newland_loadobjectdetection block="Newland Load Object detectio"
-  //% group="AI" weight=53
-  export function newland_loadobjectdetection() {
-    let str = `K50`
+
+  //% blockId=newland_loadobjectdetection block="Newland Load Object detectio %dir"
+  //% group="AI" weight=98
+  export function newland_loadobjectdetection(dir: AiDetection): void {
+    let str = `K50 ${dir}`
     serial.writeLine(str)
+    basic.pause(100)
   }
 
   /**
