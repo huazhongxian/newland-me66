@@ -44,7 +44,7 @@
     "newland.newland_onfindface|block": "人脸",
 
     "newland.newland_loadobjectdetection|block": "加载目标检测模型%dir",
-    "newland.newland_detection|block": "目标检测 阈值%th",
+    "newland.newland_detection|block": "目标检测",
     "newland.newland_detectionname|block": "目标名称和位置",
     "newland.newland_loaddigitalrecognition|block": "加载数字识别模型",
     "newland.newland_digitalrecognition|block": "数字识别 阈值%th",

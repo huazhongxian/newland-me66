@@ -679,13 +679,11 @@ namespace newland {
     basic.pause(100)
   }
 
-  /**
-   * @param th threshold; eg: 0.5
-   */
-  //% blockId=newland_detection block="Newland object detectio %th"
-  //% group="AI" weight=52
-  export function newland_detection(th: number): void {
-    let str = `K51 ${th}`
+
+  //% blockId=newland_detection block="Newland object detectio"
+  //% group="AI" weight=51
+  export function newland_detection(): void {
+    let str = `K51`
     // serial.writeLine(str)
     // basic.pause(200)
     asyncWrite(str, 51)
@@ -693,7 +691,7 @@ namespace newland {
 
 
   //% blockId=newland_detectionname block="on detectio Name"
-  //% group="AI" weight=51 draggableParameters=reporter blockGap=40
+  //% group="AI" weight=52 draggableParameters=reporter blockGap=40
   export function newland_detectionname(handler: (txt: string, x: number, y: number) => void) {
     objectdetEvt = handler
   }

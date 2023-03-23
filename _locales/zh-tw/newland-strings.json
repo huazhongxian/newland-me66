@@ -43,7 +43,7 @@
     "newland.newland_onfindface|block": "人臉",
 
     "newland.newland_loadobjectdetection|block": "加載目標檢測模型%dir",
-    "newland.newland_detection|block": "目標檢測 臨界值%th",
+    "newland.newland_detection|block": "目標檢測",
     "newland.newland_detectionname|block": "目標名稱和位置",
     "newland.newland_loaddigitalrecognition|block": "加載數字識別模型",
     "newland.newland_digitalrecognition|block": "數字識別 臨界值%th",
