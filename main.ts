@@ -85,6 +85,8 @@ namespace newland {
     Refuse = 3,
     //% block=LicensePlate
     LicensePlate = 4,
+
+
   }
 
   export enum screenDirection {
@@ -660,9 +662,19 @@ namespace newland {
 
 
   //% blockId=newland_loadobjectdetection block="Newland Load Object detectio %dir"
-  //% group="AI" weight=98
+  //% group="AI" weight=50
   export function newland_loadobjectdetection(dir: AiDetection): void {
-    let str = `K50 ${dir}`
+    let modleName = 'old';
+    if (dir == 1) {
+      modleName = 'old';
+    } else if (dir == 2) {
+      modleName = 'per';
+    } else if (dir == 3) {
+      modleName = 'laji';
+    } else if (dir == 4) {
+      modleName = 'chepai';
+    }
+    let str = `K50 `+modleName;
     serial.writeLine(str)
     basic.pause(100)
   }
