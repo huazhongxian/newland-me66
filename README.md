@@ -1,7 +1,7 @@
 #
 > Open this page at https://github.com/SupremeWu/pxt-newland
 
-pxt-newland1
+pxt-newland
 
  ![](newland.png)
 
