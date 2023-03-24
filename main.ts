@@ -662,13 +662,13 @@ namespace newland {
 
 
   //% blockId=newland_loadobjectdetection block="Newland Load Object detectio %dir"
-  //% group="AI" weight=50
+  //% group="AI" weight=53
   export function newland_loadobjectdetection(dir: AiDetection): void {
     let modleName = 'old';
     if (dir == 1) {
       modleName = 'old';
     } else if (dir == 2) {
-      modleName = 'per';
+      modleName = 'kouzhao';
     } else if (dir == 3) {
       modleName = 'laji';
     } else if (dir == 4) {
@@ -681,7 +681,7 @@ namespace newland {
 
 
   //% blockId=newland_detection block="Newland object detectio"
-  //% group="AI" weight=51
+  //% group="AI" weight=52
   export function newland_detection(): void {
     let str = `K51`
     // serial.writeLine(str)
@@ -691,7 +691,7 @@ namespace newland {
 
 
   //% blockId=newland_detectionname block="on detectio Name"
-  //% group="AI" weight=52 draggableParameters=reporter blockGap=40
+  //% group="AI" weight=51 draggableParameters=reporter blockGap=40
   export function newland_detectionname(handler: (txt: string, x: number, y: number) => void) {
     objectdetEvt = handler
   }
