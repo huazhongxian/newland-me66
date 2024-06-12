@@ -85,6 +85,9 @@ namespace newland {
     Refuse = 3,
     //% block=LicensePlate
     LicensePlate = 4,
+    //% block=diseases
+    diseases = 5,
+
 
 
   }
@@ -673,7 +676,10 @@ namespace newland {
       modleName = 'laji';
     } else if (dir == 4) {
       modleName = 'chepai';
+    } else if (dir == 5) {
+      modleName = 'diseases';
     }
+    
     let str = `K50 `+modleName;
     serial.writeLine(str)
     basic.pause(100)

@@ -85,6 +85,7 @@
     "newland.AiDetection.Mask|block":"口罩检测",
     "newland.AiDetection.Refuse|block":"垃圾分类",
     "newland.AiDetection.LicensePlate|block":"车牌检测",
+    "newland.AiDetection.diseases|block":"虫害识别",
 
     "newland.screenDirection.Back|block":"竖屏",
     "newland.screenDirection.Front|block":"横屏",
