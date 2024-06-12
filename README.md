@@ -1,5 +1,5 @@
 #
-> Open this page at https://github.com/huazhongxian/
+> Open this page at https://github.com
 
 pxt-newland
 
